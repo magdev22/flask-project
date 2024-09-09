@@ -23,7 +23,7 @@ def user(name):
 def userid(id):
     return f"Айди этого юзера {id}"
 
-@app.route('/user/login', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 
 def login():
     if request.method == 'GET':
