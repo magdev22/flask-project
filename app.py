@@ -13,10 +13,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 
-@app.route('/')
+@app.route('/<username>')
 
-def index():
-    return "Hello World!"
+def index(username):
+    return render_template('index.html', username=username )
 
 @app.route('/about')
 
