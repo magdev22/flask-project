@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 from models import Artist, Album, Song, db
+import datetime
+
 
 app = Flask(__name__)
 
@@ -47,6 +49,21 @@ def login():
 def songs():
     songs_list = Song.query.all()
     return render_template('songs.html', songs=songs_list)
+
+@app.route('/time')
+
+def time():
+    now = datetime.datetime.now()
+    if now.hour >= 6 and now.hour < 12:
+        time = 'Доброе утро ' + str(now.hour)
+    elif now.hour >= 12 and now.hour < 18:
+        time = 'Добрый день ' + str(now.hour) + ':' + str(now.minute)
+    elif now.hour >= 18 and now.hour < 24:
+        time = 'Добрый вечер '
+    else:
+        time = 'Доброй ночи'
+    return render_template('time.html', time=time)
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=9999)
