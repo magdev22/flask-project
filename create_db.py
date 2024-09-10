@@ -1,5 +1,5 @@
 from flask import Flask
-from models import Artist, Album, Song, db
+from models import Artist, Album, Song,User,  db
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///music.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -9,6 +9,12 @@ db.init_app(app)
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        #создаем юзвереи
+
+        user1 = User(name='Ivanov')
+        user2 = User(name='Sidorov')
+        db.session.add_all([user1, user2,])
+        db.session.commit()
 
         # создаем  исполнителей
         artist1 = Artist(name='The Rolling Stones')

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from models import Artist, Album, Song, db
+from models import Artist, Album, Song, User, db
 import datetime
 
 
@@ -13,10 +13,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 
-@app.route('/<username>')
+@app.route('/')
 
-def index(username):
-    return render_template('index.html', username=username )
+def index():
+    users = User.query.all()
+    return render_template('index.html', users=users )
 
 @app.route('/about')
 

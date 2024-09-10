@@ -1,8 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="container py-5">
-        <h1>{{ username }}, привет!!</h1>
-        <p class="lead">Главная.</p>
-    </div>
+
+<div class="container py-5">
+    {% for user in users %}
+    <h1>{{ user.name }}, привет!!</h1>
+    <p class="lead">Главная.</p>
+    {% endfor %}
+
+</div>
 {% endblock %}
